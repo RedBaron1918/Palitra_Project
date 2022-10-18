@@ -9,21 +9,16 @@ const router = createRouter({
       name: "home",
       component: Home,
     },
-    // {
-    //   path: "/user/post/:id",
-    //   name: "UserPost",
-    //   component: () => import("../views/UserPost.vue"),
-    // },
     {
       path: "/post/:id",
       name: "Post",
       component: () => import("../views/Post.vue"),
     },
-    // {
-    //   path: "/author/:id",
-    //   name: "Auhtor",
-    //   component: () => import("../views/Author.vue"),
-    // },
+    {
+      path: "/author/:id",
+      name: "Auhtor",
+      component: () => import("../views/Author.vue"),
+    },
   ],
 });
 

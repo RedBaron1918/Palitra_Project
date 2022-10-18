@@ -23,6 +23,26 @@ const store = createStore({
     },
   },
   actions: {
+    fetchPostsByQuery(context, query) {
+      return new Promise((resolve, reject) => {
+        fetch(query)
+          .then((response) => {
+            if (response.status === 200) {
+              return response.json();
+            } else {
+              reject({ error: "something went wrong" });
+              return;
+            }
+          })
+          .then((json) => {
+            json.map((item) => {
+              item.user = { email: "" };
+            });
+            resolve(json);
+          })
+          .catch(() => reject({ error: "something went wrong" }));
+      });
+    },
     async fetchPostsAll({ commit }) {
       let posts = null;
       await fetch(`https://jsonplaceholder.typicode.com/posts`)
@@ -81,6 +101,11 @@ const store = createStore({
           })
           .catch(() => reject({ error: "something went wrong" }));
       });
+    },
+
+    async fetchPostByUser({ state, dispatch }, id) {
+      const query = `${state.api}/posts?userId=${id}`;
+      return dispatch("fetchPostsByQuery", query);
     },
     async fetchUser(context, id) {
       let user;
