@@ -1,0 +1,17 @@
+.flex-for-card {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.item {
+  flex: 1 1 0;
+  min-height: 150px;
+}
+.item:hover {
+  background-color: aliceblue;
+}
+a {
+  text-decoration: none;
+}
